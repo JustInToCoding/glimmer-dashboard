@@ -1,10 +1,26 @@
 'use strict';
 
 const GlimmerApp = require('@glimmer/application-pipeline').GlimmerApp;
+const babel = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const replace = require('rollup-plugin-replace');
 
 module.exports = function(defaults) {
   let app = new GlimmerApp(defaults, {
     // Add options here
+    rollup: {
+      plugins: [
+        babel({
+          exclude: 'node_modules/**'
+        }),
+        resolve({ jsnext: true, module: true, main: true }),
+        replace({
+            'process.env.NODE_ENV': JSON.stringify( 'development' )
+        }),
+        commonjs()
+      ]
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
