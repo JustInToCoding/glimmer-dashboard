@@ -9,14 +9,13 @@ You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
-* [Yarn](https://yarnpkg.com/en/)
 * [Ember CLI](https://ember-cli.com/)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
 * `cd glimmer-dashboard`
-* `yarn`
+* `npm i`
 
 ## Running / Development
 

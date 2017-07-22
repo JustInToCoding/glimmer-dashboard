@@ -4,8 +4,14 @@ export default class Store extends ApolloClient {
   static create(_injections: any) : Store {
     return new this({
       networkInterface: createNetworkInterface({
-        uri: 'https://thawing-headland-78405.herokuapp.com/graphql',
+        uri: 'http://localhost:4000/graphql',
       }),
     });
+
+    // return new this({
+    //   networkInterface: createNetworkInterface({
+    //     uri: 'https://thawing-headland-78405.herokuapp.com/graphql',
+    //   }),
+    // });
   }
 }

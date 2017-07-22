@@ -1,3 +1,14 @@
 <div>
   <h1>Welcome to Glimmer!</h1>
+  <h2>Activities</h2>
+  <ul>
+    {{#each activities key="@index" as |activity|}}
+      <li>
+        {{activity.name}}
+      </li>
+    {{/each}}
+  </ul>
+  New Activity:
+  <input id="new-activity" value={{value}} type="text" onkeyup={{action setInputValue}} />
+  <button onclick={{action newActivity}}>Add Activity</button>
 </div>

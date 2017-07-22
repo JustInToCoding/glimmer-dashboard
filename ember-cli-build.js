@@ -5,11 +5,14 @@ const babel = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const replace = require('rollup-plugin-replace');
+const globals = require('rollup-plugin-node-globals');
+const builtins = require('rollup-plugin-node-builtins');
 
 module.exports = function(defaults) {
   let app = new GlimmerApp(defaults, {
     // Add options here
     rollup: {
+      entry: 'main.js',
       plugins: [
         babel({
           exclude: 'node_modules/**'
@@ -18,7 +21,15 @@ module.exports = function(defaults) {
         replace({
             'process.env.NODE_ENV': JSON.stringify( 'development' )
         }),
-        commonjs()
+        commonjs({
+          // non-CommonJS modules will be ignored, but you can also
+          // specifically include/exclude files
+          //include: 'node_modules/**',  // Default: undefined
+
+          exclude: [ 'node_modules/handlebars/**' ]
+        }),
+        // globals(),
+        // builtins()
       ]
     }
   });
