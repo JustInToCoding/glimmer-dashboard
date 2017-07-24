@@ -5,8 +5,8 @@ const babel = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const replace = require('rollup-plugin-replace');
-const globals = require('rollup-plugin-node-globals');
-const builtins = require('rollup-plugin-node-builtins');
+// const globals = require('rollup-plugin-node-globals');
+// const builtins = require('rollup-plugin-node-builtins');
 
 module.exports = function(defaults) {
   let app = new GlimmerApp(defaults, {
@@ -15,11 +15,15 @@ module.exports = function(defaults) {
       entry: 'main.js',
       plugins: [
         babel({
-          exclude: 'node_modules/**'
+          exclude: 'node_modules/**',
+          plugins: [
+            "graphql-tag"
+          ]
         }),
         resolve({ jsnext: true, module: true, main: true }),
         replace({
-            'process.env.NODE_ENV': JSON.stringify( 'development' )
+            'process.env.NODE_ENV': JSON.stringify( 'development' ),
+            '__DEV__': JSON.stringify( true )
         }),
         commonjs({
           // non-CommonJS modules will be ignored, but you can also
