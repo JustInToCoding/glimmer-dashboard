@@ -38,6 +38,16 @@ module.exports = function(defaults) {
     }
   });
 
+  app.oldCssTree = app.cssTree;
+
+  app.cssTree = function() {
+    return app.oldCssTree();
+  }
+
+  // app.package = function(jsTree, cssTree, publicTree, htmlTree) {
+  //   console.log(cssTree);
+  // }
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
