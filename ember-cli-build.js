@@ -9,6 +9,7 @@ const replace = require('rollup-plugin-replace');
 // const builtins = require('rollup-plugin-node-builtins');
 
 module.exports = function(defaults) {
+  let isProduction = process.env.EMBER_ENV === 'production';
   let app = new GlimmerApp(defaults, {
     // Add options here
     sassOptions: {
@@ -27,8 +28,8 @@ module.exports = function(defaults) {
         }),
         resolve({ jsnext: true, module: true, main: true }),
         replace({
-            'process.env.NODE_ENV': JSON.stringify( 'development' ),
-            '__DEV__': JSON.stringify( true )
+            'process.env.NODE_ENV': JSON.stringify( isProduction ? 'production' : 'development' ),
+            '__DEV__': JSON.stringify( !isProduction )
         }),
         commonjs(),
         // globals(),
