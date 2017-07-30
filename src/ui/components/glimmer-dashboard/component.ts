@@ -24,24 +24,24 @@ export default class GlimmerDashboard extends Component {
   constructor(options: object) {
     super(options);
 
-    this.store.query<{activities: Activity[]}>({
-      query: gql`
-        query Activities {
-          activities {
-            id
-            name
-            description
-          }
-        }
-      `,
-    })
-      .then(result => {
-        // console.log(result);
-        this.activities = this.deserializeActivities(result.data.activities);
-        // console.log(this.activities);
-        this.loading = false;
-      })
-      .catch(error => console.error(error));
+    // this.store.query<{activities: Activity[]}>({
+    //   query: gql`
+    //     query Activities {
+    //       activities {
+    //         id
+    //         name
+    //         description
+    //       }
+    //     }
+    //   `,
+    // })
+    //   .then(result => {
+    //     // console.log(result);
+    //     this.activities = this.deserializeActivities(result.data.activities);
+    //     // console.log(this.activities);
+    //     this.loading = false;
+    //   })
+    //   .catch(error => console.error(error));
   }
 
   deserializeActivities(serializedActivities): Activity[] {

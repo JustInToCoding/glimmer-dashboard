@@ -19,6 +19,8 @@
     "@glimmer/resolver": "^0.4.1",
     "@glimmer/test-helpers": "^0.30.0",
     "@types/qunit": "^2.0.31",
+    "babel-plugin-glimmer-inline-precompile": "^1.2.0",
+    "babel-plugin-graphql-tag": "^1.1.0",
     "broccoli-asset-rev": "^2.5.0",
     "ember-cli": "^2.14.0",
     "ember-cli-dependency-checker": "^2.0.1",
@@ -26,12 +28,11 @@
     "ember-cli-sass": "^6.2.0",
     "ember-cli-uglify": "^2.0.0-beta.1",
     "qunitjs": "^2.3.3",
+    "regenerator-runtime": "^0.10.5",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-replace": "^1.1.1",
-    "babel-plugin-glimmer-inline-precompile": "^1.2.0",
-    "babel-plugin-graphql-tag": "^1.1.0",
     "typescript": "^2.4.1"
   },
   "engines": {
@@ -39,8 +40,10 @@
   },
   "private": true,
   "dependencies": {
-    "@types/echarts": "0.0.6",
+    "@material/card": "^0.2.5",
+    "@material/theme": "^0.1.6",
+    "@material/typography": "^0.2.3",
     "apollo-client": "^1.7.0",
-    "echarts": "^3.6.2"
+    "highcharts": "^5.0.14"
   }
 }

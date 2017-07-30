@@ -11,6 +11,11 @@ const replace = require('rollup-plugin-replace');
 module.exports = function(defaults) {
   let app = new GlimmerApp(defaults, {
     // Add options here
+    sassOptions: {
+      includePaths: [
+        'node_modules'
+      ]
+    },
     rollup: {
       entry: 'main.js',
       plugins: [
@@ -25,24 +30,12 @@ module.exports = function(defaults) {
             'process.env.NODE_ENV': JSON.stringify( 'development' ),
             '__DEV__': JSON.stringify( true )
         }),
-        commonjs({
-          // non-CommonJS modules will be ignored, but you can also
-          // specifically include/exclude files
-          //include: 'node_modules/**',  // Default: undefined
-
-          exclude: [ 'node_modules/handlebars/**' ]
-        }),
+        commonjs(),
         // globals(),
         // builtins()
       ]
     }
   });
-
-  app.oldCssTree = app.cssTree;
-
-  app.cssTree = function() {
-    return app.oldCssTree();
-  }
 
   // app.package = function(jsTree, cssTree, publicTree, htmlTree) {
   //   console.log(cssTree);
