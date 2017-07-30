@@ -1,34 +1,30 @@
 import Component, { tracked } from '@glimmer/component';
 import Highcharts from 'highcharts';
 
-
-export default class BitcoinChart extends Component {
-
+export default class BitcoinHistory extends Component {
   @tracked prices = [];
   highcharts: Highcharts.ChartObject;
 
   constructor(options: object) {
     super(options);
 
-    this.bitCoinPriceFeed();
+    this.getHistoricalPrices();
   }
 
-  async bitCoinPriceFeed() {
-
-    while(true) {
-      let currentPriceResponse = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
-      let currentPrice = await currentPriceResponse.json();
-      let currentPricePoint = [
-        new Date(currentPrice.time.updatedISO).getTime(),
-        currentPrice.bpi.EUR.rate_float
+  async getHistoricalPrices() {
+    let historicalPricesResponse = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?currency=EUR');
+    let historicalPrices = await historicalPricesResponse.json();
+    let prices = [];
+    let bpi = historicalPrices.bpi;
+    let bpiKeys = Object.keys(bpi);
+    prices = bpiKeys.map(key => {
+      return [
+        new Date(key).getTime(),
+        bpi[key]
       ];
-      this.prices = [
-        ...this.prices,
-        currentPricePoint
-      ];
-      this.highcharts.series[0].addPoint(currentPricePoint);
-      await new Promise(resolve => setTimeout(resolve, 59990));
-    }
+    });
+    this.prices = prices;
+    this.highcharts.series[0].setData(prices);
   }
 
   didInsertElement() {

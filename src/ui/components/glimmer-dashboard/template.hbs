@@ -2,11 +2,21 @@
   <h1 class="mdc-typography--display2 mdc-typography--adjust-margin">Welcome to Glimmer Dashboard!</h1>
   <div class="mdc-card">
     <section class="mdc-card__primary">
-      <h1 class="mdc-card__title mdc-card__title--large">BTC to EUR exchange rate over time</h1>
+      <h1 class="mdc-card__title mdc-card__title--large">Live BTC to EUR exchange rate</h1>
       <h2 class="mdc-card__subtitle">Click and drag in the plot area to zoom in</h2>
     </section>
     <section class="mdc-card__media">
       <bitcoin-chart></bitcoin-chart>
+    </section>
+  </div>
+  <br />
+  <div class="mdc-card">
+    <section class="mdc-card__primary">
+      <h1 class="mdc-card__title mdc-card__title--large">Historical BTC to EUR exchange rate</h1>
+      <h2 class="mdc-card__subtitle">Click and drag in the plot area to zoom in</h2>
+    </section>
+    <section class="mdc-card__media">
+      <bitcoin-history></bitcoin-history>
     </section>
   </div>
   {{!-- <h2>Activities</h2>
