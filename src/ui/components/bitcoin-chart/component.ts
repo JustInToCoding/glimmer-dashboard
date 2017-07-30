@@ -23,7 +23,7 @@ export default class BitcoinChart extends Component {
   }
 
   async bitCoinPriceFeed() {
-    // let historicalPricesResponse = await fetch('http://api.coindesk.com/v1/bpi/historical/close.json?currency=EUR');
+    // let historicalPricesResponse = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?currency=EUR');
     // let historicalPrices = await historicalPricesResponse.json();
     // let prices = [];
     // let bpi = historicalPrices.bpi;
@@ -37,7 +37,7 @@ export default class BitcoinChart extends Component {
     // this.prices = prices;
     // this.highcharts.series[0].setData(prices);
     while(true) {
-      let currentPriceResponse = await fetch('http://api.coindesk.com/v1/bpi/currentprice.json');
+      let currentPriceResponse = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
       let currentPrice = await currentPriceResponse.json();
       let currentPricePoint = [
         new Date(currentPrice.time.updatedISO).getTime(),
